@@ -1,0 +1,41 @@
+{
+  "vector_set_version": "tv/1",
+  "crypto_suite_id": "cs/1",
+  "vectors": [
+    {
+      "id": "kdf_v1_basic",
+      "passphrase": "correct horse battery staple",
+      "salt_b64": "dGVzdC1zYWx0LTAwMDE=",
+      "params": { "m_cost_kib": 262144, "t_cost": 3, "p": 1, "out_len": 32 },
+      "master_key_hex": "TO_BE_FILLED_BY_RUST_IMPLEMENTATION"
+    },
+    {
+      "id": "wrap_unwrap_v1",
+      "kek_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "plaintext_key_hex": "1f1e1d1c1b1a191817161514131211100f0e0d0c0b0a09080706050403020100",
+      "aad_hex": "63747873796e632d777261702d616164",
+      "wrapped_key_b64": "TO_BE_FILLED_BY_RUST_IMPLEMENTATION"
+    },
+    {
+      "id": "encrypt_decrypt_v1",
+      "object_key_hex": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+      "aad_json": {
+        "workspace_id": "018f3f8e-8f91-7f13-9a03-a0cb2af5e6e1",
+        "object_type": "message",
+        "object_id": "018f3f90-1898-78a8-bce0-b0574a24c5e0",
+        "envelope_version": "env/1"
+      },
+      "nonce_b64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "plaintext_utf8": "{\"model_version\":\"dm/1\",\"content\":{\"text\":\"hello\"}}",
+      "ciphertext_b64": "TO_BE_FILLED_BY_RUST_IMPLEMENTATION"
+    },
+    {
+      "id": "decrypt_fail_aad_mismatch_v1",
+      "expected_error": "AuthFailed"
+    },
+    {
+      "id": "decrypt_fail_corrupt_ciphertext_v1",
+      "expected_error": "AuthFailed"
+    }
+  ]
+}
