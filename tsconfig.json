@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/types" },
+    { "path": "packages/crypto-ts" },
+    { "path": "packages/store-local" },
+    { "path": "packages/store-remote" },
+    { "path": "packages/adapters-s3" },
+    { "path": "packages/sync-engine" },
+    { "path": "packages/cli" }
+  ]
+}
