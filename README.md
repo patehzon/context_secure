@@ -37,3 +37,14 @@ node packages/cli/dist/main.js agent run \
   --prompt "Summarize this workspace." \
   --config-dir ~/.config/context-secure
 ```
+
+## Live Llama Server Smoke Test
+
+The runtime package includes an opt-in live smoke test for a running local `llama-server`:
+
+```bash
+CTXSECURE_LLAMA_SMOKE=1 \
+CTXSECURE_LLAMA_ENDPOINT=http://127.0.0.1:8080 \
+CTXSECURE_LLAMA_MODEL_REF=qwen2.5-7b-instruct-q4_k_m \
+npm test --workspace @context-secure/runtime-llama-cpp
+```
