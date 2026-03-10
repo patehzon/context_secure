@@ -45,6 +45,10 @@ Forbidden in crate:
 
 Errors are explicit tagged enums; no panic for attacker-controlled input.
 
+Blob framing for AEAD outputs:
+- `wrapped_key_blob` is `nonce(24 bytes) || ciphertext_with_tag`.
+- `ciphertext_blob` is `nonce(24 bytes) || ciphertext_with_tag`.
+
 ## 4. Envelope format (`env/1`)
 
 Canonical encoding: JSON UTF-8 with required stable key ordering at serialization:
@@ -105,6 +109,15 @@ Vector IDs (fixtures in `docs/m0/test-vectors/crypto-vectors.json`):
 4. `decrypt_fail_aad_mismatch_v1`
 5. `decrypt_fail_corrupt_ciphertext_v1`
 
+Determinism rules for fixtures:
+- `kdf_v1_basic` is deterministic by Argon2id inputs.
+- `wrap_unwrap_v1` fixture blob is generated with a fixed all-zero 24-byte nonce for test reproducibility only.
+- `encrypt_decrypt_v1` uses the fixture-provided nonce (`nonce_b64`) for deterministic output.
+- Production `wrap_key` and `encrypt_object` must generate fresh random nonces when no test nonce is supplied.
+
+Offline bootstrap note:
+- If deterministic vectors cannot be materialized due network-restricted dependency resolution, fixture values MUST be explicitly marked with `TODO_OFFLINE_*`.
+
 ## 8. Concrete examples
 
 ### Example A: envelope metadata
@@ -127,4 +140,4 @@ Vector IDs (fixtures in `docs/m0/test-vectors/crypto-vectors.json`):
 - Same envelope decrypted with `object_id` changed in AAD input MUST return error `AuthFailed`.
 
 ### Example C: parse failure
-- Envelope missing `crypto_suite_id` MUST return error `InvalidEnvelope(MissingField("crypto_suite_id"))`.
+- Envelope parse failure (missing required field, malformed JSON, or invalid major version) MUST return `InvalidEnvelope(...)`.

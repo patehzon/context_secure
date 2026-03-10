@@ -6,6 +6,7 @@
     { "path": "packages/store-local" },
     { "path": "packages/store-remote" },
     { "path": "packages/adapters-s3" },
+    { "path": "packages/runtime-llama-cpp" },
     { "path": "packages/sync-engine" },
     { "path": "packages/cli" }
   ]

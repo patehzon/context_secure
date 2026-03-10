@@ -8,5 +8,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "node --test dist/**/*.test.js"
+  },
+  "dependencies": {
+    "@context-secure/types": "0.1.0"
   }
 }

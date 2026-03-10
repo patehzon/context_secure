@@ -14,6 +14,7 @@ Local-first encrypted sync SDK + minimal CLI for single-user workspace sync over
 - `packages/store-local` local persistence boundary.
 - `packages/store-remote` provider-agnostic remote interface.
 - `packages/adapters-s3` AWS S3 adapter boundary.
+- `packages/runtime-llama-cpp` local `llama.cpp` runtime adapter boundary.
 - `packages/sync-engine` sync orchestration boundary.
 - `packages/cli` reference command surface.
 - `crypto/ctxsync_crypto` standalone Rust crypto core.
@@ -23,4 +24,16 @@ Local-first encrypted sync SDK + minimal CLI for single-user workspace sync over
 ```bash
 npm install
 npm run typecheck
+```
+
+## Local Agent Smoke Path
+
+After building the workspace, the CLI can run a local `llama.cpp` model through device-local `lrc/1` config:
+
+```bash
+node packages/cli/dist/main.js agent run \
+  --runtime llama.cpp \
+  --model-ref qwen2.5-7b-instruct-q4_k_m \
+  --prompt "Summarize this workspace." \
+  --config-dir ~/.config/context-secure
 ```
